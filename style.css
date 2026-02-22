@@ -91,6 +91,7 @@ footer {
     display: flex;
     justify-content: center;
     width: 32px;
+    height: 32px;
     gap: 20px;
 }
 
@@ -118,8 +119,8 @@ footer {
 .card:hover {
     transition: all 750ms;
     box-shadow: 2px 2px #333, -2px -2px #222;
-    scale: 1.01;
-    background-color: #030349;
+    background-color: #020231;
+    scale: 1.005;
 }
 
 .card>img {
