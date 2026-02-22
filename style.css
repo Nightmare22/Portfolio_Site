@@ -70,13 +70,11 @@ footer {
 
 
 .hero-text {
-    min-width: 450px;
     max-width: 600px;
-    font-size: 20px;
+    font-size: 19px;
 }
 
 .hero-img {
-    min-width: 150px;
     max-width: 300px;
     border: solid #111 1px;
 }
@@ -110,7 +108,7 @@ footer {
     padding: 10px;
     width: 300px;
     border: solid #111 1px;
-    font-size: 20px;
+    font-size: 19px;
 }
 
 .card:hover {
@@ -156,10 +154,11 @@ footer {
     text-align: center;
     display: block;
     color: red;
-    font-size: 20px;
+    font-size: 19px;
     text-shadow: 0px 0px #000;
 }
 
 .hint>span {
+    font-size: 18px;
     color: white;
 }
