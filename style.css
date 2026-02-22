@@ -32,7 +32,7 @@ footer {
 }
 
 .navigation a+a {
-    border-left: solid #111 1px;
+    border-left: solid #222 1px;
 }
 
 .navigation a:hover {
@@ -40,6 +40,8 @@ footer {
     scale: 1.1;
     background-color: white;
     color: darkblue;
+    border-radius: 7px;
+
 }
 
 .featured {
@@ -106,14 +108,18 @@ footer {
 }
 
 .card {
-    padding: 10px;
     width: 300px;
-    border: solid #111 1px;
+    border-radius: 10px;
     font-size: 19px;
+    background-color: #010126;
+    padding: 10px;
 }
 
 .card:hover {
-    box-shadow: #333;
+    transition: all 750ms;
+    box-shadow: 2px 2px #333, -2px -2px #222;
+    scale: 1.01;
+    background-color: #030349;
 }
 
 .card>img {
