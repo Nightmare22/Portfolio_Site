@@ -157,3 +157,7 @@ footer {
     font-size: 19px;
     text-shadow: 0px 0px #000;
 }
+
+.own_email {
+    text-align: center;
+}
