@@ -1,0 +1,6 @@
+body -> grid -> {"header","main","footer"}
+main -> grid -> {"hero", "intro", "picture"}
+
+hero -> über mich -> wollen sie meinen Lebenslauf -> download hier
+intro -> hier erzähle ich etwas über mich
+picture -> hier ist mein Foto
