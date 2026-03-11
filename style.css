@@ -8,6 +8,7 @@
 
     /*width*/
     --intro-width: 600px;
+    --card-width: 300px;
     --picture-width: 300px;
     --language-logos: 48px;
 
@@ -16,11 +17,15 @@
     --dark-color-font: #eee;
     --light-color-font: #111;
     --hover-bg: #ccc;
+    --card-color: rgb(52, 42, 255);
 
     /*Border-Radius*/
     --border-radius-md: 5px;
 
     /*font-Sizes*/
+
+    /*trasition-time*/
+    --transition-time: 200ms;
 
 
 }
@@ -58,6 +63,7 @@ header>nav {
 }
 
 header>nav a {
+    transition: background-color var(--transition-time), color var(--transition-time);
     padding: var(--spacing-sm);
     color: var(--dark-color-font);
     text-decoration: none;
@@ -97,7 +103,12 @@ footer>p {
 }
 
 .hero {
-    grid-area: hero
+    grid-area: hero;
+}
+
+.hero h2 {
+    padding: var(--spacing-md);
+    padding-left: 0px;
 }
 
 .intro {
@@ -106,6 +117,7 @@ footer>p {
 }
 
 .picture {
+    transition: transform var(--transition-time), bos-shadow var(--transition-time);
     grid-area: picture;
     max-width: var(--picture-width);
     border: solid 1px black;
@@ -133,6 +145,31 @@ footer>p {
 .pics>img {
     width: var(--language-logos);
     height: var(--language-logos);
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-lg);
+}
+
+.card {
+    transition: transform var(--transition-time), bos-shadow var(--transition-time);
+    max-width: var(--card-width);
+    background-color: var(--card-color);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-md);
+    color: var(--dark-color-font);
+}
+
+.card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0px var(--spacing-md) var(--spacing-lg) rgba(0, 0, 0, 0.15);
+}
+
+.card img {
+    width: 100%;
+
 }
 
 @media(max-width: 646px) {
