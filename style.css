@@ -1,210 +1,840 @@
+/* ================================================================
+   style.css – Portfolio Marcus Schmidt
+   ================================================================
+   Struktur:
+   1.  Token System (Farben, Dark/Light Mode)
+   2.  Reset & Base
+   3.  Scrollbar
+   4.  Navigation
+   5.  Hero
+   6.  Buttons
+   7.  Sections (allgemein)
+   8.  Skills / Tech-Badges
+   9.  Projekte
+   10. Berufserfahrung
+   11. Über mich / Timeline
+   12. Kontakt
+   13. Footer
+   14. Separator
+   15. Animationen
+   16. Responsive / Mobile
+================================================================ */
+
+
+/* ─── 1. TOKEN SYSTEM ────────────────────────────────────────── */
 :root {
-    /*spacing and padding*/
-    --spacing-xl: 64px;
-    --spacing-lg: 32px;
-    --spacing-md: 16px;
-    --spacing-sm: 8px;
-    --spacing-xs: 4px;
+  --accent:       #00d4ff;
+  --accent-dim:   #0099bb;
+  --accent-glow:  rgba(0, 212, 255, 0.15);
 
-    /*width and height*/
-    --intro-width: 600px;
-    --card-width: 300px;
-    --picture-width: 300px;
-    --language-logos: 48px;
-    --message-height: 150px;
-
-    /*Color*/
-    --light-color-bg: rgb(52, 42, 255);
-    --dark-color-font: #eee;
-    --light-color-font: #111;
-    --hover-bg: #ccc;
-    --card-color: rgb(52, 42, 255);
-
-    /*Border-Radius*/
-    --border-radius-md: 5px;
-
-    /*font-Sizes*/
-
-    /*trasition-time*/
-    --transition-time: 200ms;
-
-
+  /* Dark Mode (Standard) */
+  --bg:           #0d1117;
+  --bg-2:         #161b22;
+  --bg-3:         #1c2330;
+  --border:       #2d3748;
+  --text-primary: #e6edf3;
+  --text-muted:   #8b949e;
+  --card-shadow:  0 4px 24px rgba(0,0,0,0.4);
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0px;
-    padding: 0px;
+[data-theme="light"] {
+  --bg:           #f0f4f8;
+  --bg-2:         #ffffff;
+  --bg-3:         #e2e8f0;
+  --border:       #cbd5e0;
+  --text-primary: #1a202c;
+  --text-muted:   #4a5568;
+  --card-shadow:  0 4px 24px rgba(0,0,0,0.08);
+}
+
+
+/* ─── 2. RESET & BASE ────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-    min-height: 100vh;
-    display: grid;
-    grid-template-areas: "header" "main" "footer";
-    grid-template-rows: auto 1fr auto;
-    color: var(--light-color-font);
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text-primary);
+  transition: background 0.3s ease, color 0.3s ease;
+  line-height: 1.6;
+  overflow-x: hidden;
 }
 
-header {
-    background-color: var(--light-color-bg);
-    color: var(--dark-color-font);
-    grid-area: header;
+
+/* ─── 3. SCROLLBAR ───────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--accent-dim); border-radius: 3px; }
+
+
+/* ─── 4. NAVIGATION ──────────────────────────────────────────── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(1.5rem, 5vw, 4rem);
+  height: 64px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  transition: background 0.3s;
 }
 
-header>h1 {
-    padding: var(--spacing-md);
-    text-align: center;
+.nav-logo {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+  text-decoration: none;
 }
 
-header>nav {
-    display: flex;
-    justify-content: center;
-    gap: var(--spacing-md);
+.nav-logo span { color: var(--text-primary); }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
 }
 
-header>nav a {
-    transition: background-color var(--transition-time), color var(--transition-time);
-    padding: var(--spacing-sm);
-    color: var(--dark-color-font);
-    text-decoration: none;
+.nav-links a {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
 }
 
-header>nav a:hover {
-    background-color: var(--hover-bg);
-    color: var(--light-color-font);
-    border-radius: var(--border-radius-md) var(--border-radius-md) 0px 0px;
+.nav-links a:hover { color: var(--accent); }
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
-.featured {
-    background-color: var(--dark-color-font);
-    color: var(--light-color-font);
-    border-radius: var(--border-radius-md) var(--border-radius-md) 0px 0px;
+.theme-toggle {
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
-main {
-    padding: var(--spacing-md);
-    grid-area: main;
-    display: grid;
-    grid-template-areas: "hero hero" "picture intro" "picture intro" "language language";
-    gap: var(--spacing-xl);
-    justify-content: center;
-    grid-template-rows: auto auto auto 1fr;
-    background-color: var(--dark-color-font);
+.theme-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
 }
 
-footer {
-    background-color: var(--light-color-bg);
-    grid-area: footer;
-}
 
-footer>p {
-    text-align: center;
-    color: var(--dark-color-font);
-}
-
+/* ─── 5. HERO ────────────────────────────────────────────────── */
 .hero {
-    grid-area: hero;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 80px clamp(1.5rem, 8vw, 8rem) 4rem;
+  position: relative;
+  overflow: hidden;
 }
 
-.hero h2 {
-    padding: var(--spacing-md);
-    padding-left: 0px;
+/* Raster-Hintergrund */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.25;
+  pointer-events: none;
 }
 
-.intro {
-    grid-area: intro;
-    max-width: var(--intro-width);
-    background-color: var(--card-color);
-    padding: var(--spacing-md);
-    color: var(--dark-color-font);
-    border-radius: var(--border-radius-md);
+/* Leuchtender Glow-Orb */
+.hero::after {
+  content: '';
+  position: absolute;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  top: -100px; right: -100px;
+  pointer-events: none;
 }
 
-.picture {
-    transition: transform var(--transition-time), bos-shadow var(--transition-time);
-    grid-area: picture;
-    max-width: var(--picture-width);
-    border: solid 1px black;
-    border-radius: var(--border-radius-md);
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
 }
 
-.picture:hover {
-    transform: translateY(-7px);
-    box-shadow: 0px var(--spacing-md) var(--spacing-lg) rgba(0, 0, 0, 0.15);
+.hero-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--accent);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
-.languages {
-    grid-area: language;
+.hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 32px; height: 1px;
+  background: var(--accent);
 }
 
-.languages>h2 {
-    text-align: center;
+h1 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
 }
 
-.languages>div {
-    display: flex;
-    justify-content: center;
+h1 .accent { color: var(--accent); }
+
+.terminal-line {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+  min-height: 2em;
 }
 
-.pics>img {
-    width: var(--language-logos);
-    height: var(--language-logos);
+.terminal-line .prompt {
+  color: var(--accent);
+  margin-right: 0.5rem;
 }
 
-.cards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-lg);
+#typed-text { color: var(--text-primary); }
+
+.cursor {
+  display: inline-block;
+  width: 2px; height: 1.2em;
+  background: var(--accent);
+  vertical-align: text-bottom;
+  animation: blink 1s step-end infinite;
 }
 
-.card {
-    transition: transform var(--transition-time), bos-shadow var(--transition-time);
-    max-width: var(--card-width);
-    background-color: var(--card-color);
-    padding: var(--spacing-md);
-    border-radius: var(--border-radius-md);
-    color: var(--dark-color-font);
+@keyframes blink { 50% { opacity: 0; } }
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
 }
 
-.card:hover {
-    transform: translateY(-7px);
-    box-shadow: 0px var(--spacing-md) var(--spacing-lg) rgba(0, 0, 0, 0.15);
+.hero-stats {
+  display: flex;
+  gap: 2.5rem;
+  flex-wrap: wrap;
 }
 
-.card img {
-    width: 100%;
+.stat { display: flex; flex-direction: column; }
 
+.stat-number {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
 }
 
-.formular {
-    background-color: var(--card-color);
-    padding: var(--spacing-md);
-    color: var(--dark-color-font);
-    border-radius: var(--border-radius-md);
-}
-
-.formular input {
-    width: 100%;
-    margin-bottom: var(--spacing-lg);
-    height: var(--spacing-lg);
-}
-
-.formular textarea {
-    height: var(--message-height);
-    width: 100%;
-    margin-bottom: var(--spacing-lg);
+.stat-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 4px;
 }
 
 
+/* ─── 6. BUTTONS ─────────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--accent);
+  color: #0d1117;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.75rem 1.75rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
 
-@media(max-width: 646px) {
-    main {
-        display: grid;
-        grid-template-areas: "hero" "picture" "intro" "language";
-    }
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 212, 255, 0.3);
+}
 
-    .portrait {
-        display: flex;
-        justify-content: center;
-    }
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  padding: 0.75rem 1.75rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.btn-outline:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+
+/* ─── 7. SECTIONS (allgemein) ────────────────────────────────── */
+section {
+  padding: 5rem clamp(1.5rem, 8vw, 8rem);
+}
+
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--accent);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+h2 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 3rem;
+  color: var(--text-primary);
+}
+
+
+/* ─── 8. SKILLS & TECH-BADGES ────────────────────────────────── */
+#skills { background: var(--bg-2); }
+
+.tech-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.tech-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  background: var(--accent-glow);
+  transition: background 0.2s;
+}
+
+.tech-badge:hover { background: rgba(0, 212, 255, 0.25); }
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.skill-card {
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.5rem;
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.skill-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: var(--card-shadow);
+}
+
+.skill-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.skill-icon {
+  width: 38px; height: 38px;
+  background: var(--accent-glow);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.skill-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+
+/* ─── 9. PROJEKTE ────────────────────────────────────────────── */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.project-card {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+  box-shadow: var(--card-shadow);
+}
+
+.project-banner {
+  height: 10px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-dim));
+}
+
+/* Screenshot-Vorschau in der Projektkarte */
+.project-screenshot-wrap {
+  width: 100%;
+  background: var(--bg-3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 1rem 0.5rem;
+  overflow: hidden;
+}
+
+.project-screenshot-slider {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-screenshot {
+  width: auto;
+  max-width: 100%;
+  max-height: 200px;
+  border-radius: 10px;
+  object-fit: contain;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  display: none;
+}
+
+/* Einzelbild-Karte (z.B. Finance Tracker – Hochformat) */
+.project-screenshot:only-child,
+.project-screenshot.single {
+  display: block;
+  max-width: 140px;
+  max-height: 240px;
+  margin: 0 auto;
+}
+
+/* Slider: nur aktives Bild sichtbar */
+.project-screenshot.slide        { display: none; }
+.project-screenshot.slide.active { display: block; max-width: 100%; max-height: 200px; }
+
+/* Slider-Punkte */
+.slider-dots {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+  padding-bottom: 4px;
+}
+
+.dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--border);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.dot.active { background: var(--accent); }
+
+.project-body {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.project-desc {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+  flex: 1;
+}
+
+.project-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.project-tags {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.project-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: var(--bg-3);
+  color: var(--accent);
+  border: 1px solid var(--border);
+}
+
+.project-link {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.project-link:hover { color: var(--accent); }
+
+
+/* ─── 10. BERUFSERFAHRUNG ────────────────────────────────────── */
+#experience { background: var(--bg); }
+
+.exp-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.exp-card {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 0 2rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
+}
+
+.exp-card:first-child { padding-top: 0; }
+.exp-card:last-child  { border-bottom: none; }
+
+.exp-card--active .exp-year { color: var(--accent); }
+.exp-card--active .exp-role { color: var(--accent); }
+
+.exp-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-top: 3px;
+}
+
+.exp-year {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.exp-line {
+  width: 1px;
+  flex: 1;
+  background: var(--border);
+  margin: 8px 0;
+}
+
+.exp-body { padding-bottom: 0.5rem; }
+
+.exp-role {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.exp-company {
+  font-size: 0.8rem;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+}
+
+.exp-desc {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.exp-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+
+/* ─── 11. ÜBER MICH & TIMELINE ───────────────────────────────── */
+#about { background: var(--bg-2); }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.about-text p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.about-text p strong { color: var(--text-primary); }
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.timeline-item {
+  display: flex;
+  gap: 1rem;
+  position: relative;
+}
+
+.timeline-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin-top: 6px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.timeline-dot::after {
+  content: '';
+  position: absolute;
+  left: 4px; top: 10px;
+  width: 1px; height: calc(100% + 16px);
+  background: var(--border);
+}
+
+.timeline-item:last-child .timeline-dot::after { display: none; }
+
+.timeline-year {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.timeline-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.timeline-sub {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+
+/* ─── 12. KONTAKT ────────────────────────────────────────────── */
+#contact { text-align: center; }
+
+.contact-box {
+  max-width: 560px;
+  margin: 0 auto;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 3rem 2rem;
+}
+
+.contact-box p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.contact-link:hover {
+  border-color: var(--accent);
+  transform: translateX(4px);
+}
+
+.contact-icon {
+  width: 40px; height: 40px;
+  background: var(--accent-glow);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.contact-info { text-align: left; }
+
+.contact-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.contact-value {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+
+/* ─── 13. FOOTER ─────────────────────────────────────────────── */
+footer {
+  padding: 2rem clamp(1.5rem, 8vw, 8rem);
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+footer p {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+footer a { color: var(--accent); text-decoration: none; }
+
+
+/* ─── 14. SEPARATOR ──────────────────────────────────────────── */
+.section-sep {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin: 0 clamp(1.5rem, 8vw, 8rem);
+}
+
+
+/* ─── 15. ANIMATIONEN ────────────────────────────────────────── */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: none;
+}
+
+
+/* ─── 16. RESPONSIVE / MOBILE ────────────────────────────────── */
+@media (max-width: 768px) {
+  .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+}
+
+@media (max-width: 640px) {
+  .nav-links    { display: none; }
+  .hero-stats   { gap: 1.5rem; }
+  .exp-card     { grid-template-columns: 1fr; gap: 0.5rem; }
+  .exp-left     { align-items: flex-start; flex-direction: row; gap: 0.5rem; }
+  .exp-line     { display: none; }
 }

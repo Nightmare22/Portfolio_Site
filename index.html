@@ -1,78 +1,632 @@
 <!DOCTYPE html>
-<html lang="de">
-
+<html lang="de" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marcus Schmidt</title>
-    <link rel="stylesheet" href="style.css" />
-    <script src="script.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marcus Schmidt – Fachinformatiker Anwendungsentwicklung</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-    <header>
-        <h1>Portfolio von Marcus Schmidt</h1>
-        <nav>
-            <a class="featured" href="index.html">Home</a>
-            <a href="portfolio.html">Projekte</a>
-            <a href="contact.html">Kontakt</a>
-        </nav>
-    </header>
-    <main>
-        <section class="hero">
-            <h2>Über mich</h2>
-            <p>Sie suchen einen Softwareentwickler oder Webentwickler? Dann sind Sie hier genau richtig. Laden sie
-                meinen Lebenslauf herunter.
-            </p>
-            <a href="assets/documents/Lebenslauf.pdf">Lebenslauf herunterladen</a>
-        </section>
 
-        <div class="portrait">
-            <img class="picture" src="assets/berwerbungsbild.jpeg" alt="Bewerbungsbild">
+  <!-- ═══ NAVIGATION ══════════════════════════════════════════════ -->
+  <nav>
+    <a href="#" class="nav-logo">MS<span>_dev</span></a>
+
+    <ul class="nav-links">
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Erfahrung</a></li>
+      <li><a href="#projects">Projekte</a></li>
+      <li><a href="#about">Über mich</a></li>
+      <li><a href="#contact">Kontakt</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Theme wechseln">
+        <span id="theme-icon">☀️</span>
+        <span id="theme-label">Light</span>
+      </button>
+    </div>
+  </nav>
+
+
+  <!-- ═══ HERO ════════════════════════════════════════════════════ -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <p class="hero-eyebrow">Fachinformatiker Anwendungsentwicklung</p>
+
+      <h1>Marcus<br><span class="accent">Schmidt</span></h1>
+
+      <p class="terminal-line">
+        <span class="prompt">~$</span>
+        <span id="typed-text"></span><span class="cursor"></span>
+      </p>
+
+      <div class="hero-cta">
+        <a href="#contact" class="btn-primary">📬 Kontakt aufnehmen</a>
+        <a href="#projects" class="btn-outline">⚙️ Projekte ansehen</a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-number">8+</span>
+          <span class="stat-label">Kerntechnologien</span>
         </div>
-        <section class="intro">
-            <p> Mein Name ist Marcus Schmidt, ich bin 38 Jahre alt und ausgebildeter Fachinformatiker für
-                Anwendungsentwicklung. <br>Seit rund 15 Jahren beschäftige ich mich mit der
-                Softwareentwicklung.<br>
-                Im Laufe meiner beruflichen Praxis habe ich mit verschiedenen Programmiersprachen und
-                Technologien gearbeitet, darunter Visual Basic, C#, Java, C, C++, Rust, Python, Dart und Flutter
-                sowie LabVIEW 2020. <br>Aktuell erweitere ich mein Know-how im Bereich Webentwicklung mit HTML,
-                CSS
-                und JavaScript.
-                Vor sechs Jahren habe ich meine Umschulung zum Fachinformatiker für
-                Anwendungsentwicklung
-                erfolgreich abgeschlossen. Anschließend war ich drei Jahre in der Softwareentwicklung tätig.
-                Danach habe ich zwei Jahre als Systemadministrator gearbeitet und dabei meine Kenntnisse im
-                Bereich IT-Infrastruktur vertieft.
-                Im vergangenen Jahr habe ich eine achtmonatige Weiterbildung zum App-Entwickler absolviert.
-                Bestandteil dieser Weiterbildung waren Dart und Flutter sowie ein integrierter Designkurs,
-                in
-                dem ich mit Figma gearbeitet und fundierte Kenntnisse im Bereich UI- und UX-Design erworben
-                habe.
-                Wenn ich Ihr Interesse geweckt habe, lade ich Sie herzlich ein, sich mein Portfolio anzusehen
-                und meinen Lebenslauf herunterzuladen.
-                Ich freue mich über Ihre Kontaktaufnahme – sei es für Rückfragen oder ein persönliches Gespräch.
-                <br>Über das Kontaktformular können Sie jederzeit mit mir in Verbindung treten.
-            </p>
-        </section>
+        <div class="stat">
+          <span class="stat-number">6</span>
+          <span class="stat-label">Jahre Berufspraxis</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">100%</span>
+          <span class="stat-label">Lernbereitschaft</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <section class="languages">
-            <h2>Programmiersprachen:</h2>
-            <div class="pics">
-                <img src="assets/languages/vb.png" alt="Logo">
-                <img src="assets/languages/c.png" alt="Logo">
-                <img src="assets/languages/c++.png" alt="Logo">
-                <img src="assets/languages/java.png" alt="Logo">
-                <img src="assets/languages/python.png" alt="Logo">
-                <img src="assets/languages/rust.svg" alt="Logo">
-                <img src="assets/languages/dart.png" alt="Logo">
-                <img src="assets/languages/flutter.svg" alt="Logo">
+  <div class="section-sep"></div>
+
+
+  <!-- ═══ SKILLS ══════════════════════════════════════════════════ -->
+  <section id="skills">
+    <p class="section-label">// Technologien</p>
+    <h2>Mein Tech-Stack</h2>
+
+    <div class="tech-strip fade-in">
+      <span class="tech-badge">C#</span>
+      <span class="tech-badge">VB.NET</span>
+      <span class="tech-badge">C++</span>
+      <span class="tech-badge">.NET Framework</span>
+      <span class="tech-badge">Python</span>
+      <span class="tech-badge">Flutter</span>
+      <span class="tech-badge">Dart</span>
+      <span class="tech-badge">Rust</span>
+      <span class="tech-badge">Flutter Rust Bridge</span>
+      <span class="tech-badge">HTML</span>
+      <span class="tech-badge">CSS</span>
+      <span class="tech-badge">JavaScript</span>
+      <span class="tech-badge">Git</span>
+    </div>
+
+    <div class="skills-grid">
+
+      <div class="skill-card fade-in">
+        <div class="skill-header">
+          <div class="skill-icon">🔷</div>
+          <span class="skill-name">.NET Ökosystem</span>
+        </div>
+        <div class="skill-tags">
+          <span class="tag">C#</span>
+          <span class="tag">VB.NET</span>
+          <span class="tag">.NET Framework</span>
+          <span class="tag">WinForms</span>
+          <span class="tag">WPF</span>
+        </div>
+      </div>
+
+      <div class="skill-card fade-in">
+        <div class="skill-header">
+          <div class="skill-icon">🔩</div>
+          <span class="skill-name">Hardwarenahe Entwicklung</span>
+        </div>
+        <div class="skill-tags">
+          <span class="tag">C++</span>
+          <span class="tag">Rust</span>
+          <span class="tag">Treiber-Entwicklung</span>
+          <span class="tag">Low-Level</span>
+          <span class="tag">Performance</span>
+        </div>
+      </div>
+
+      <div class="skill-card fade-in">
+        <div class="skill-header">
+          <div class="skill-icon">📱</div>
+          <span class="skill-name">Mobile & Cross-Platform</span>
+        </div>
+        <div class="skill-tags">
+          <span class="tag">Flutter</span>
+          <span class="tag">Dart</span>
+          <span class="tag">Flutter Rust Bridge</span>
+          <span class="tag">Android</span>
+          <span class="tag">iOS</span>
+        </div>
+      </div>
+
+      <div class="skill-card fade-in">
+        <div class="skill-header">
+          <div class="skill-icon">⚡</div>
+          <span class="skill-name">Flutter Rust Bridge</span>
+        </div>
+        <div class="skill-tags">
+          <span class="tag">Flutter + Rust</span>
+          <span class="tag">Native Performance</span>
+          <span class="tag">FFI</span>
+          <span class="tag">Cross-Platform</span>
+          <span class="tag">Dart Bindings</span>
+        </div>
+      </div>
+
+      <div class="skill-card fade-in">
+        <div class="skill-header">
+          <div class="skill-icon">🐍</div>
+          <span class="skill-name">Scripting & Automatisierung</span>
+        </div>
+        <div class="skill-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Automatisierung</span>
+          <span class="tag">Datenverarbeitung</span>
+          <span class="tag">Scripting</span>
+        </div>
+      </div>
+
+      <div class="skill-card fade-in">
+        <div class="skill-header">
+          <div class="skill-icon">🌐</div>
+          <span class="skill-name">Web-Grundlagen</span>
+        </div>
+        <div class="skill-tags">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+        </div>
+      </div>
+
+      <div class="skill-card fade-in">
+        <div class="skill-header">
+          <div class="skill-icon">🖥️</div>
+          <span class="skill-name">Systemadministration</span>
+        </div>
+        <div class="skill-tags">
+          <span class="tag">Windows Server</span>
+          <span class="tag">Netzwerk</span>
+          <span class="tag">IT-Infrastruktur</span>
+          <span class="tag">Active Directory</span>
+        </div>
+      </div>
+
+      <div class="skill-card fade-in">
+        <div class="skill-header">
+          <div class="skill-icon">🔧</div>
+          <span class="skill-name">Tools & Versionsverwaltung</span>
+        </div>
+        <div class="skill-tags">
+          <span class="tag">Git</span>
+          <span class="tag">GitHub</span>
+          <span class="tag">VS Code</span>
+          <span class="tag">Visual Studio</span>
+          <span class="tag">Figma</span>
+        </div>
+      </div>
+
+      <div class="skill-card fade-in">
+        <div class="skill-header">
+          <div class="skill-icon">🔥</div>
+          <span class="skill-name">Firebase</span>
+        </div>
+        <div class="skill-tags">
+          <span class="tag">Firebase Firestore</span>
+          <span class="tag">Firebase Auth</span>
+          <span class="tag">Realtime Database</span>
+        </div>
+      </div>
+
+      <div class="skill-card fade-in">
+        <div class="skill-header">
+          <div class="skill-icon">💡</div>
+          <span class="skill-name">Soft Skills</span>
+        </div>
+        <div class="skill-tags">
+          <span class="tag">Teamarbeit</span>
+          <span class="tag">Problemlösung</span>
+          <span class="tag">Selbständigkeit</span>
+          <span class="tag">Lernbereitschaft</span>
+          <span class="tag">Eigeninitiative</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="section-sep"></div>
+
+
+  <!-- ═══ BERUFSERFAHRUNG ══════════════════════════════════════════ -->
+  <section id="experience">
+    <p class="section-label">// Berufserfahrung</p>
+    <h2>Mein Werdegang</h2>
+
+    <div class="exp-grid fade-in">
+
+      <div class="exp-card">
+        <div class="exp-left">
+          <span class="exp-year">2018</span>
+          <div class="exp-line"></div>
+        </div>
+        <div class="exp-body">
+          <p class="exp-role">Ausbildung abgeschlossen</p>
+          <p class="exp-company">Fachinformatiker Anwendungsentwicklung</p>
+          <p class="exp-desc">
+            Abschluss der Umschulung zum Fachinformatiker Anwendungsentwicklung.
+            Fundierte Kenntnisse in Softwareentwicklung, Projektarbeit und
+            modernen Entwicklungsmethoden.
+          </p>
+          <div class="exp-tags">
+            <span class="project-tag">C#</span>
+            <span class="project-tag">.NET</span>
+            <span class="project-tag">SQL</span>
+            <span class="project-tag">OOP</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-left">
+          <span class="exp-year">2018 – 09/2021</span>
+          <div class="exp-line"></div>
+        </div>
+        <div class="exp-body">
+          <p class="exp-role">Systementwickler</p>
+          <p class="exp-company">ca. 3 Jahre · Systementwicklung</p>
+          <p class="exp-desc">
+            Entwicklung von Erweiterungsprojekten und hardwarenahen Treibern für
+            Geräte im professionellen Umfeld. Arbeit an der Schnittstelle zwischen
+            Software und Hardware – Kernel-Kommunikation, Gerätetreiber und
+            systemnahe Programmierung mit C++ und Rust.
+          </p>
+          <div class="exp-tags">
+            <span class="project-tag">C++</span>
+            <span class="project-tag">Rust</span>
+            <span class="project-tag">Treiber</span>
+            <span class="project-tag">Low-Level</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-left">
+          <span class="exp-year">10/2021 – 12/2024</span>
+          <div class="exp-line"></div>
+        </div>
+        <div class="exp-body">
+          <p class="exp-role">Systemadministrator</p>
+          <p class="exp-company">ca. 3 Jahre · IT-Administration</p>
+          <p class="exp-desc">
+            Verantwortung für IT-Infrastruktur, Netzwerke und Serversysteme.
+            Breiter Einblick in den gesamten IT-Betrieb – von der Planung
+            über den Betrieb bis zur Fehlerbehebung unter Zeitdruck.
+          </p>
+          <div class="exp-tags">
+            <span class="project-tag">Windows Server</span>
+            <span class="project-tag">Netzwerk</span>
+            <span class="project-tag">Active Directory</span>
+            <span class="project-tag">Infrastruktur</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-left">
+          <span class="exp-year">03/2025 – 11/2025</span>
+          <div class="exp-line"></div>
+        </div>
+        <div class="exp-body">
+          <p class="exp-role">Weiterbildung · Cross-Platform Entwicklung</p>
+          <p class="exp-company">ca. 8 Monate · App Akademie</p>
+          <p class="exp-desc">
+            Zertifizierte Weiterbildung mit Fokus auf Cross-Platform-Entwicklung mit
+            Flutter und Dart. Erstellung von Low-, Mid- und High-Fidelity Prototypen
+            in Figma sowie vertieftes Arbeiten mit Firebase Firestore und Firebase Auth
+            für Backend-Integration und Nutzerverwaltung.
+          </p>
+          <div class="exp-tags">
+            <span class="project-tag">Flutter</span>
+            <span class="project-tag">Dart</span>
+            <span class="project-tag">Figma</span>
+            <span class="project-tag">Firebase Firestore</span>
+            <span class="project-tag">Firebase Auth</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-card exp-card--active">
+        <div class="exp-left">
+          <span class="exp-year">Aktuell</span>
+          <div class="exp-line"></div>
+        </div>
+        <div class="exp-body">
+          <p class="exp-role">Offen für neue Möglichkeiten</p>
+          <p class="exp-company">Fokus: Softwareentwicklung & hardwarenahe Programmierung</p>
+          <p class="exp-desc">
+            Nach erfolgreicher Berufsausbildung und über 6 Jahren Berufspraxis
+            in Entwicklung und Administration suche ich eine neue Stelle, in der
+            ich meine Stärken in der Softwareentwicklung – besonders im
+            hardwarenahen Bereich – voll einbringen kann.
+          </p>
+          <div class="exp-tags">
+            <span class="project-tag">C#</span>
+            <span class="project-tag">Rust</span>
+            <span class="project-tag">C++</span>
+            <span class="project-tag">Flutter</span>
+            <span class="project-tag">Hardware-nah</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="section-sep"></div>
+
+
+  <!-- ═══ PROJEKTE ════════════════════════════════════════════════ -->
+  <section id="projects">
+    <p class="section-label">// Projekte</p>
+    <h2>Eigene Projekte</h2>
+
+    <div class="projects-grid">
+
+      <!-- Projekt 1 – Finance Tracker -->
+      <div class="project-card fade-in">
+        <div class="project-banner"></div>
+        <div class="project-body">
+          <div class="project-screenshot-wrap">
+            <img
+              src="assets/FinanceTracker.png"
+              alt="Finance Tracker App Screenshot"
+              class="project-screenshot single"
+            />
+          </div>
+          <h3 class="project-title">💰 Finance Tracker</h3>
+          <p class="project-desc">
+            Eine mobile App zur persönlichen Finanzverwaltung. Einnahmen, Ausgaben
+            und Ersparnisse werden übersichtlich auf einem Dashboard dargestellt –
+            inklusive Diagrammen und Trendanzeigen. Daten werden per Firebase
+            gespeichert und sind geräteübergreifend verfügbar.
+          </p>
+          <div class="project-footer">
+            <div class="project-tags">
+              <span class="project-tag">Flutter</span>
+              <span class="project-tag">Dart</span>
+              <span class="project-tag">Firebase</span>
+              <span class="project-tag">FL_Chart</span>
+              <span class="project-tag">SharedPreferences</span>
             </div>
-        </section>
-    </main>
-    <footer>
-        <p>erstellt von Marcus Schmidt</p>
-    </footer>
-</body>
+            <a href="https://github.com/Nightmare240219871987/abschluss_projekt" target="_blank" class="project-link">GitHub →</a>
+          </div>
+        </div>
+      </div>
 
+      <!-- Projekt 2 – System Breakdown -->
+      <div class="project-card fade-in">
+        <div class="project-banner"></div>
+        <div class="project-body">
+          <div class="project-screenshot-wrap">
+            <div class="project-screenshot-slider">
+              <img src="assets/SystemBreakdown_CPU.png"       alt="System Breakdown CPU"       class="project-screenshot slide active" />
+              <img src="assets/SystemBreakdown_RAM.png"       alt="System Breakdown RAM"       class="project-screenshot slide" />
+              <img src="assets/SystemBreakdown_Processes.png" alt="System Breakdown Processes" class="project-screenshot slide" />
+            </div>
+            <div class="slider-dots">
+              <span class="dot active" onclick="setSlide(this, 0)"></span>
+              <span class="dot"        onclick="setSlide(this, 1)"></span>
+              <span class="dot"        onclick="setSlide(this, 2)"></span>
+            </div>
+          </div>
+          <h3 class="project-title">🖥️ System Breakdown</h3>
+          <p class="project-desc">
+            Eine Desktop-Anwendung zur detaillierten Systemanalyse – von CPU-Taktung
+            und Kern-Auslastung über RAM-Nutzung und Slot-Informationen bis hin zu
+            Hardware-Verschlüsselung und SSE Feature Sets. Entwickelt mit Flutter
+            und Rust für maximale Systemtiefe bei plattformübergreifender UI.
+          </p>
+          <div class="project-footer">
+            <div class="project-tags">
+              <span class="project-tag">Flutter</span>
+              <span class="project-tag">Dart</span>
+              <span class="project-tag">Rust</span>
+              <span class="project-tag">FL_Chart</span>
+              <span class="project-tag">sysinfo</span>
+              <span class="project-tag">cpufeature</span>
+              <span class="project-tag">Flutter Rust Bridge</span>
+            </div>
+            <a href="https://github.com/Nightmare240219871987/system_breakdown" target="_blank" class="project-link">GitHub →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Projekt 3 – PassSafe -->
+      <div class="project-card fade-in">
+        <div class="project-banner"></div>
+        <div class="project-body">
+          <div class="project-screenshot-wrap">
+            <div class="project-screenshot-slider">
+              <img src="assets/PassSafe_Main.png"  alt="PassSafe Hauptfenster" class="project-screenshot slide active" />
+              <img src="assets/PassSafe_Login.png" alt="PassSafe Login"        class="project-screenshot slide" />
+              <img src="assets/PassSafe_Error.png" alt="PassSafe Fehler"       class="project-screenshot slide" />
+            </div>
+            <div class="slider-dots">
+              <span class="dot active" onclick="setSlide(this, 0)"></span>
+              <span class="dot"        onclick="setSlide(this, 1)"></span>
+              <span class="dot"        onclick="setSlide(this, 2)"></span>
+            </div>
+          </div>
+          <h3 class="project-title">🔐 PassSafe</h3>
+          <p class="project-desc">
+            Ein sicherer Desktop-Passwortmanager mit starker Zwei-Schicht-Verschlüsselung:
+            AES-256 mit Hash &amp; Salt für die Master-Authentifizierung sowie
+            Serpent für die Datenverschlüsselung. Passwörter lassen sich nach
+            Kategorien verwalten, importieren und exportieren.
+          </p>
+          <div class="project-footer">
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">Qt5</span>
+              <span class="project-tag">PyCryptodome</span>
+              <span class="project-tag">AES-256</span>
+              <span class="project-tag">Serpent</span>
+              <span class="project-tag">base64</span>
+            </div>
+            <a href="https://github.com/Nightmare22/PassSafe/tree/main" target="_blank" class="project-link">GitHub →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="section-sep"></div>
+
+
+  <!-- ═══ ÜBER MICH ════════════════════════════════════════════════ -->
+  <section id="about">
+    <p class="section-label">// Über mich</p>
+    <h2>Wer bin ich?</h2>
+
+    <div class="about-grid">
+
+      <div class="about-text fade-in">
+        <p>
+          Hallo! Ich bin <strong>Marcus Schmidt</strong> aus <strong>Uftrungen, Südharz</strong> –
+          Fachinformatiker Anwendungsentwicklung mit echter Leidenschaft fürs Programmieren.
+        </p>
+        <p>
+          Schon früh habe ich mich privat mit verschiedenen Programmiersprachen beschäftigt
+          und ein Gespür für Software-Entwicklung entwickelt. 2018 habe ich dieses Interesse
+          dann professionell vertieft und meine <strong>Umschulung zum Fachinformatiker
+          Anwendungsentwicklung</strong> erfolgreich abgeschlossen.
+        </p>
+        <p>
+          Danach folgten <strong>ca. 3 Jahre Systementwicklung</strong> (bis 09/2021) – hardwarenahe Treiber
+          und Erweiterungsprojekte für Geräte – sowie direkt im Anschluss <strong>ca. 3 Jahre Systemadministration</strong>
+          (bis 12/2024), womit ich insgesamt auf <strong>6 Jahre Berufserfahrung</strong> in der IT komme.
+          Ab <strong>03/2025</strong> absolvierte ich eine
+          <strong>8-monatige Weiterbildung an der App Akademie</strong>
+          mit Fokus auf Cross-Platform-Entwicklung mit Flutter und Dart, UI/UX-Design in Figma
+          sowie Firebase Firestore und Auth.
+        </p>
+        <p>
+          Mein besonderes Interesse gilt der <strong>hardwarenahen Programmierung</strong>:
+          Treiber, Low-Level-Lösungen in C++ und Rust. Was mich dabei antreibt, ist die
+          Überzeugung, dass sich <strong>maximale Systemtiefe und moderne, ansprechende UI
+          nicht ausschließen müssen</strong> – auch wenn das in der Praxis selten zusammenkommt.
+          Die <strong>Flutter Rust Bridge</strong> ist für mich genau das Werkzeug, das diese
+          Welten verbindet: native Performance unter der Haube, saubere Cross-Platform-UI darüber.
+        </p>
+      </div>
+
+      <div class="timeline fade-in">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <p class="timeline-year">Aktuell</p>
+            <p class="timeline-title">Neue Stelle gesucht</p>
+            <p class="timeline-sub">Fokus auf Software- & hardwarenahe Entwicklung</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <p class="timeline-year">03/2025 – 11/2025</p>
+            <p class="timeline-title">Weiterbildung · App Akademie</p>
+            <p class="timeline-sub">Flutter, Dart, Figma, Firebase – ca. 8 Monate</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <p class="timeline-year">10/2021 – 12/2024</p>
+            <p class="timeline-title">Systemadministrator</p>
+            <p class="timeline-sub">IT-Infrastruktur, Netzwerke, Windows Server – ca. 3 Jahre</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <p class="timeline-year">2018 – 09/2021</p>
+            <p class="timeline-title">Systementwickler</p>
+            <p class="timeline-sub">Gerätetreiber & Erweiterungsprojekte – ca. 3 Jahre</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <p class="timeline-year">2018</p>
+            <p class="timeline-title">Fachinformatiker Anwendungsentwicklung</p>
+            <p class="timeline-sub">Abschluss der Umschulung</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <p class="timeline-year">Schulabschluss</p>
+            <p class="timeline-title">Hauptschulabschluss</p>
+            <p class="timeline-sub">Uftrungen, Südharz</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="section-sep"></div>
+
+
+  <!-- ═══ KONTAKT ══════════════════════════════════════════════════ -->
+  <section id="contact">
+    <p class="section-label">// Kontakt</p>
+    <h2>Lass uns reden</h2>
+
+    <div class="contact-box fade-in">
+      <p>
+        Du suchst einen erfahrenen Entwickler mit Herz für hardwarenahe Programmierung?
+        Ich freue mich auf deine Nachricht!
+      </p>
+      <div class="contact-links">
+
+        <a href="mailto:Marcusschmidt2402@hotmail.de" class="contact-link">
+          <div class="contact-icon">📧</div>
+          <div class="contact-info">
+            <p class="contact-label">E-Mail</p>
+            <p class="contact-value">Marcusschmidt2402@hotmail.de</p>
+          </div>
+        </a>
+
+        <div class="contact-link" style="cursor: default;">
+          <div class="contact-icon">🐙</div>
+          <div class="contact-info">
+            <p class="contact-label">GitHub</p>
+            <a href="https://github.com/Nightmare22" target="_blank" class="contact-value" style="display:block; text-decoration:none; color: var(--text-primary);">github.com/Nightmare22</a>
+            <a href="https://github.com/Nightmare240219871987" target="_blank" class="contact-value" style="display:block; text-decoration:none; color: var(--text-primary);">github.com/Nightmare240219871987</a>
+          </div>
+        </div>
+
+        <div class="contact-link" style="cursor: default;">
+          <div class="contact-icon">📍</div>
+          <div class="contact-info">
+            <p class="contact-label">Standort</p>
+            <p class="contact-value">06536 Südharz OT Uftrungen, Sachsen-Anhalt</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══ FOOTER ═══════════════════════════════════════════════════ -->
+  <footer>
+    <p>© 2025 Marcus Schmidt · Fachinformatiker Anwendungsentwicklung</p>
+    <p>Made with 💻 &amp; ☕ in Uftrungen · <a href="https://github.com/Nightmare22" target="_blank">GitHub</a></p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+
+</body>
 </html>
